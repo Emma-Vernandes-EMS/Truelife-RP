@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrueLifeRP – GTA Roleplay Server</title>
+  <meta name="description" content="TrueLifeRP – deutscher GTA Roleplay Server. Bewerbe dich für die Whitelist und werde Teil der Community.">
+  <link rel="icon" href="logo.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #0a0a0b; --card: #131316; --text: #f3f4f6; --muted: #9ca3af; --accent: #e11d2f; --accent-2: #ffffff;
+      --radius: 20px; --shadow: 0 10px 28px rgba(0,0,0,.45); --maxw: 1180px;
+    }
+    * { box-sizing: border-box; } html, body { height: 100%; }
+    body { margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background: radial-gradient(1200px 700px at 80% -10%, rgba(225,29,47,.18), transparent 60%), radial-gradient(900px 600px at 10% 10%, rgba(255,255,255,.08), transparent 60%), var(--bg);
+      color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    .container { width:100%; max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+    header { position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(6px); background: color-mix(in srgb, var(--card) 80%, transparent); border-bottom:1px solid rgba(255,255,255,.06);}
+    .nav { display:flex; align-items:center; justify-content:space-between; height:74px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px; }
+    .brand img { height:42px; }
+    .navlinks { display:flex; gap:18px; align-items:center; }
+    .navlinks a { color:var(--text); opacity:.9; } .navlinks a:hover { opacity:1; color:var(--accent);}
+    .menu-btn { display:none; background:none; border:0; color:var(--text); font-size:24px; }
+
+    .badge { display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(225,29,47,.12); border:1px solid rgba(225,29,47,.5); color:#fecaca; }
+    .hero { padding:90px 0 56px; }
+    .hero-inner { display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center; }
+    .headline { font-size:clamp(30px, 6.2vw, 62px); line-height:1.04; margin:0 0 16px; }
+    .subline { font-size:clamp(16px, 2.4vw, 20px); color:var(--muted); margin-bottom:26px; }
+    .cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { padding:12px 18px; border-radius:14px; font-weight:800; display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,.1);}
+    .btn-primary { background:linear-gradient(135deg, var(--accent), #ff4d5c); color:white; }
+    .btn-outline { color:var(--text); }
+    .hero-card { background:color-mix(in srgb, var(--card) 86%, transparent); border:1px solid rgba(255,255,255,.08); padding:24px; border-radius:var(--radius); box-shadow:var(--shadow);}
+    .label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.15em;}
+
+    section { padding:74px 0; }
+    .section-title { font-size:28px; margin:0 0 10px; }
+    .section-sub { color:var(--muted); margin-bottom:30px; }
+
+    .grid { display:grid; gap:18px; }
+    .grid-3 { grid-template-columns:repeat(3,1fr); }
+    .card { background:color-mix(in srgb, var(--card) 86%, transparent); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);}
+    .rules ol { padding-left:18px; } .rules li { margin-bottom:10px; }
+
+    footer { padding:40px 0; color:var(--muted); border-top:1px solid rgba(255,255,255,.06); }
+
+    @media (max-width:980px){ .hero-inner{grid-template-columns:1fr;} .grid-3{grid-template-columns:1fr;} .navlinks{display:none; position:absolute; top:74px; right:20px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px; box-shadow:var(--shadow); } .menu-btn{display:block;} }
+  
+    /* ===== Animated Background (EDIT: Speed/Opacity) ===== */
+    .bg-anim{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:-1;}
+    .blob{position:absolute; width:60vmax; height:60vmax; filter:blur(60px); opacity:.3; border-radius:50%;
+      background: radial-gradient(closest-side, var(--accent), transparent 70%); mix-blend-mode:screen; animation: drift 28s linear infinite;}
+    .blob.b2{background: radial-gradient(closest-side, #ffffff, transparent 70%); opacity:.18; animation-duration: 36s;}
+    .blob.b3{background: radial-gradient(closest-side, #ff4d5c, transparent 70%); opacity:.22; animation-duration: 44s;}
+    @keyframes drift{
+      0%{ transform: translate(-20%, -10%) scale(1); }
+      25%{ transform: translate(60%, -30%) scale(1.1); }
+      50%{ transform: translate(20%, 40%) scale(0.95); }
+      75%{ transform: translate(-50%, 10%) scale(1.05); }
+      100%{ transform: translate(-20%, -10%) scale(1); }
+    }
+    .scanlines{position:absolute; inset:-100% 0 0 0; background: repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 1px, transparent 1px, transparent 3px);
+      animation: slideDown 18s linear infinite; opacity:.25;}
+    @keyframes slideDown{ 0%{ transform: translateY(-20%);} 100%{ transform: translateY(0);}}
+
+
+    .dropdown {
+     position: relative;
+    }
+
+    .dropdown-toggle {
+     background: none;
+     border: none;
+    color: inherit;
+     font: inherit;
+    cursor: pointer;
+    }
+
+    .dropdown-menu {
+     position: absolute;
+     top: 100%;
+     left: 0;
+     display: none;
+     background: #111;
+     padding: 0.5rem 0;
+     min-width: 160px;
+     border-radius: 6px;
+    }
+
+    .dropdown-menu a {
+     display: block;
+     padding: 0.5rem 1rem;
+     color: white;
+     text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+     background: rgba(255,255,255,0.1);
+    }
+
+    .dropdown.open .dropdown-menu {
+     display: block;
+    }
+
+</style>
+</head>
+
+<body>
+<div class="bg-anim"><div class="blob"></div><div class="blob b2"></div><div class="blob b3"></div><div class="scanlines"></div></div>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="TrueLifeRP Logo" />
+        <span>TrueLifeRP</span>
+    </div>
+
+      <nav class="navlinks" id="navlinks">
+        
+        <div class="dropdown">
+  <button class="dropdown-toggle">Menü  ▾</button>
+  <div class="dropdown-menu">
+    <a href="#about">Über uns</a>
+    <a href="#rules">Regeln</a>
+    <a href="#apply">Whitelist</a>
+    <a href="#team">Team</a>
+    <a href="#shopsite">Shop</a>
+    <a href="#contact">Kontakt</a>
+    <a href="partner.html">Partner</a>
+  </div>
+</div>
+
+        
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Menü öffnen">☰</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">GTA Roleplay – DE/AT/CH</span>
+        <h1 class="headline">Willkommen bei TrueLifeRP</h1>
+        <p class="subline">Realistisches RP, aktive Community & faire Regeln. Schließe dich unserem Server an und starte deine eigene Story.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.com/invite/ZqdqBGsd36" target="_blank" rel="noopener">Zum Discord</a>
+          <a class="btn btn-outline" href="#apply">Zur Whitelist</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="label">Server Facts</div>
+        <ul>
+          <li>Sprache: Deutsch</li>
+          <li>Whitelist + aktive Moderation</li>
+          <li>Regelmäßige Events & Jobs (PD/EMS/Mechanic/Unternehmen)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">Über TrueLifeRP</h2>
+      <p class="section-sub">Wofür wir stehen.</p>
+      <div class="card"><p>TrueLifeRP ist ein deutschsprachiger GTA-RP-Server mit Fokus auf glaubwürdiges, respektvolles Roleplay. Wir fördern langfristige Stories, Karrieren und eine hilfsbereite Community.</p></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Features</h2>
+      <p class="section-sub">Was dich erwartet.</p>
+      <div class="grid grid-3">
+        <div class="card"><h3>Wirtschaft & Firmen</h3><p>Eigenes Wirtschaftssystem, Unternehmen, Immobilien & Fahrzeuge mit realistischen Preisen.</p></div>
+        <div class="card"><h3>Jobs & Fraktionen</h3><p>Police, EMS, Mechanic, News & mehr – mit klaren Prozessen und Aufstiegsmöglichkeiten.</p></div>
+        <div class="card"><h3>Illegale Szene</h3><p>Ausgewogenes Crime-Gameplay mit fairen Regeln – für spannende Langzeit-Stories.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rules" class="rules">
+    <div class="container">
+      <h2 class="section-title">Regeln (Kurzfassung)</h2>
+      <p class="section-sub">Vollständige Regeln & Support im Discord.</p>
+      <ol>
+        <li>Respektvoller Umgang, kein Tox Verhalten.</li>
+        <li>Keine Power-/Fail-/Meta-/Copbait RP. Kein RDM/VDM/Combat-Logging.</li>
+        <li>Eskalation nur mit RP-Grundlage. Erst RP, dann Schüsse.</li>
+        <li>OOC-Infos (Streams/Clips) nicht im RP nutzen.</li>
+        <li>Clips als Beweise sichern; Support im Discord.</li>
+      </ol>
+      <p>→ <a href="https://discord.com/invite/ZqdqBGsd36" target="_blank" rel="noopener">Zum Discord</a></p>
+    </div>
+  </section>
+
+  
+  <section id="apply">
+    <div class="container">
+      <h2 class="section-title">Whitelist / Bewerbung</h2>
+      <p class="section-sub">Fülle das Formular aus – wir melden uns auf Discord oder per Mail.</p>
+      <div class="card">
+        <!--
+          EDIT: Ziel-E-Mail für die Bewerbung eintragen:
+          Ersetze "bewerbung@trueliferp.example" unten bei the "mailto:".
+          Alternative: FormSubmit ohne Backend – setze action="https://formsubmit.co/DEINE-MAIL"
+          und entferne das onsubmit-Attribut.
+        -->
+        <form id="wlForm" onsubmit="return submitWL()">
+          <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px">
+            <div><label for="wl_name">Dein Name</label><input id="wl_name" name="name" required placeholder="Max Mustermann"></div>
+            <div><label for="wl_discord">Discord</label><input id="wl_discord" name="discord" required placeholder="Max#1234"></div>
+          </div>
+          <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px; margin-top:12px">
+            <div><label for="wl_age">Alter</label><input id="wl_age" name="age" required type="number" min="14" placeholder="18"></div>
+            <div><label for="wl_timezone">Zeitzone</label><input id="wl_timezone" name="timezone" placeholder="CET/CEST"></div>
+          </div>
+          <div style="margin-top:12px"><label for="wl_char">Charakter-Idee</label><textarea id="wl_char" name="character" rows="4" placeholder="Kurzbeschreibung deines Charakters" required></textarea></div>
+          <div style="margin-top:12px"><label for="wl_experience">RP-Erfahrung</label><textarea id="wl_experience" name="experience" rows="3" placeholder="RP-Erfahrung / frühere Server"></textarea></div>
+          <div style="margin-top:12px"><label><input type="checkbox" id="wl_rules" required> Ich habe die <a href="#rules">Regeln</a> gelesen.</label></div>
+          <div style="display:flex; gap:12px; margin-top:14px">
+            <button class="btn btn-primary" type="submit">Bewerbung senden</button>
+            <a class="btn btn-outline" href="https://discord.com/invite/ZqdqBGsd36" target="_blank" rel="noopener">Discord Support</a>
+          </div>
+          <p id="wl_note" class="section-sub" style="margin-top:10px; display:none">Danke! Dein Mail-Programm öffnet gleich die Bewerbung.</p>
+        </form>
+
+       <script>
+          async function submitWL() {
+  const webhookURL = "https://discordapp.com/api/webhooks/1479779088062222428/iXJAH0fK9lY19EdwJ72-7HQxz9LE5Rf_seJnrkM_Gl7JINNm2xTpgXV0RDtc_ZIrvDd2";
+
+  const name = document.getElementById("wl_name").value;
+  const discord = document.getElementById("wl_discord").value;
+  const age = document.getElementById("wl_age").value;
+  const timezone = document.getElementById("wl_timezone").value;
+  const character = document.getElementById("wl_char").value;
+  const experience = document.getElementById("wl_experience").value;
+
+  const payload = {
+    username: "Whitelist Bewerbungen",
+    embeds: [{
+      title: "📩 Neue Whitelist-Bewerbung",
+      color: 5763719,
+      fields: [
+        { name: "Name", value: name, inline: true },
+        { name: "Discord", value: discord, inline: true },
+        { name: "Alter", value: age, inline: true },
+        { name: "Zeitzone", value: timezone || "-", inline: true },
+        { name: "Charakter", value: character },
+        { name: "Erfahrung", value: experience || "-" }
+      ]
+    }]
+  };
+
+  try {
+    const response = await fetch(webhookURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      document.getElementById("wl_note").style.display = "block";
+      document.getElementById("wlForm").reset();
+    } else {
+      alert("Discord Webhook Fehler");
+    }
+
+  } catch (error) {
+    alert("Fehler beim senden");
+    console.error(error);
+  }
+
+  return false;
+}</script>
+</section>
+  
+<section id="team">
+    <div class="container">
+      <h2 class="section-title">Team</h2>
+      <p class="section-sub">Wer euch unterstützt. <!-- EDIT: Namen/Rollen direkt hier im HTML ändern --></p>
+      <div class="grid grid-3">
+        <!-- EDIT: Teamcards -->
+        <div class="card"><h3>Serverleitung</h3><p><strong>Mike</strong> – Serverleiter</p></div>
+        <div class="card"><h3>Projektleitung</h3><p><strong>Micha</strong> - Projektleitung <br><strong>Ramon</strong> - Projektleitung <br><strong>Emma</strong> – STV- Projektleitung </p></div>
+        <div class="card"><h3>Administration</h3><p><strong>Jessi</strong> – Admin</p></div>
+        <div class="card"><h3>PD Leitung</h3><p><strong>Micha</strong> – Chief of Police</p></div>
+        <div class="card"><h3>EMS Leitung</h3><p><strong>Emma</strong> – Chief Medical Officer</p></div>
+        <div class="card"><h3>Mechanic Leitung</h3><p><strong>Micha</strong> – Head of Workshop</p></div>
+      </div>
+    </div>
+</section>
+
+<section id="shopsite" class="Shop">
+    <div class="container">
+      <h2 class="section-title">Truelife - Shop</h2>
+      <p class="section-sub">Alles was dein Herz begehrt findest du in unserem Truerlife - Shop</p>
+      <ol>
+        <p>Vielleicht ein neues Auto gefällig?</p>
+        <p>Oder doch lieber ein neues outfit oder einen colleren haarschnitt?</p>
+        <p>Falls du änderungs wünsche oder vorschläge hast darfst du dich gerne via Kontakt melden.</p>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Kontakt & Socials</h2>
+      <div class="card">
+        <p><strong>Discord:</strong> <a href="https://discord.gg/ZqdqBGsd36" target="_blank" rel="noopener">https://discord.gg/ZqdqBGsd36</a></p>
+        <p><strong>TikTok:</strong> <a href="https://tiktok.com/@trueliferp2" target="_blank" rel="noopener">https://tiktok.com/@trueliferp2</a></p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/p/DU3-OOxCBGO/?igsh=ZTZudXpuM3locnJ3" target="_blank" rel="noopener">https://www.instagram.com/p/DU3-OOxCBGO/?igsh=ZTZudXpuM3locnJ3</a></p>
+        <p><strong>E-Mail:</strong> info.trueliferp@gmx.ch</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> TrueLifeRP · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = navlinks.style.display === 'flex';
+      navlinks.style.display = isOpen ? 'none' : 'flex';
+      if (!isOpen) { navlinks.style.flexDirection = 'column'; navlinks.style.gap = '12px'; }
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      btn.parentElement.classList.toggle('open');
+    });
+     });
+
+    document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => {
+      d.classList.remove('open');
+    });
+    });
+    </script>
+
+
+
+</body>
+</html>
